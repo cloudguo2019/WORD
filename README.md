@@ -1,5 +1,3 @@
-# WORD
-
 # Normal.dotm Word 模板使用说明
 
 [1,4,7](@ref)
