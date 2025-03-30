@@ -1,0 +1,208 @@
+'26 一号
+'24 小一
+'22 二号
+'18 小二
+'16 三号
+'15 小三
+'14 四号
+'12 小四
+'10.5 五号
+'9 小五
+
+Sub 章标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 16 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphCenter '居中
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel1 '大纲级别：1级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 一级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel2 '大纲级别：2级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+        .Fields.Add Range:=Selection.Range, Type:=wdFieldEmpty, Text:="SEQ 一级标题\n \*ARABIC\*MERGEFORMAT", PreserveFormatting:=True
+        .TypeText Text:=""
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+    End With
+End Sub
+Sub 二级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel3 '大纲级别：3级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 三级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel4 '大纲级别：4级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 四级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel5 '大纲级别：5级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 五级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel6 '大纲级别：6级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 六级标题()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 14 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevel7 '大纲级别：7级
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 文章正文()
+    With Selection
+        .Font.Name = "宋体" '字体
+        .Font.Size = 12 '三号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphLeft '居左
+        .ParagraphFormat.OutlineLevel = wdOutlineLevelBodyText '大纲级别：正文文本
+        .ParagraphFormat.FirstLineIndent = 2 * 12 '首行缩进2字符
+    End With
+End Sub
+Sub 表内容()
+    With Selection
+        .Font.Name = "宋体" '字体
+        .Font.Size = 9 '小五
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphCenter '居中
+        .ParagraphFormat.OutlineLevel = wdOutlineLevelBodyText '大纲级别：正文文本
+    End With
+End Sub
+Sub 表题编号()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 10.5 '五号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphCenter '居中
+        .ParagraphFormat.OutlineLevel = wdOutlineLevelBodyText '大纲级别：正文文本
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 图内容()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 9 '小五
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphCenter '居中
+        .ParagraphFormat.OutlineLevel = wdOutlineLevelBodyText '大纲级别：正文文本
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub 图题编号()
+    With Selection
+        .Font.Name = "黑体" '字体
+        .Font.Size = 10.5 '五号
+        .Font.Bold = False '不加粗
+        .ParagraphFormat.Alignment = wdAlignParagraphCenter '居中
+        .ParagraphFormat.OutlineLevel = wdOutlineLevelBodyText '大纲级别：正文文本
+        .ParagraphFormat.FirstLineIndent = 0 '首行无缩进
+    End With
+End Sub
+Sub CreateCustomMenu()
+    Dim customMenu As CommandBarPopup
+    Dim customButton As CommandBarButton
+    Dim menuBar As CommandBar
+    '获取菜单栏
+    Set menuBar = Application.CommandBars("menu Bar")
+    '删除已存在的同名菜单
+    On Error Resume Next
+    menuBar.Controls("").Delete
+    menuBar.Controls("方案模板").Delete
+    menuBar.Controls("图与表").Delete
+    On Error GoTo 0
+    
+    '创建方案菜单
+    Set customMenu = menuBar.Controls.Add(Type:=msoControlPopup, Before:=2)
+    customMenu.Caption = "方案模板"
+    
+    '添加按钮 章标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "章标题"
+    customButton.OnAction = "章标题"
+    '添加按钮 一级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "一级标题"
+    customButton.OnAction = "一级标题"
+    '添加按钮 二级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "二级标题"
+    customButton.OnAction = "二级标题"
+    '添加按钮 三级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "三级标题"
+    customButton.OnAction = "三级标题"
+    '添加按钮 四级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "四级标题"
+    customButton.OnAction = "四级标题"
+    '添加按钮 五级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "五级标题"
+    customButton.OnAction = "五级标题"
+    '添加按钮 六级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "六级标题"
+    customButton.OnAction = "六级标题"
+    '添加按钮 文章正文
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "文章正文"
+    customButton.OnAction = "文章正文"
+    
+    '创建方案菜单
+    Set customMenu = menuBar.Controls.Add(Type:=msoControlPopup, Before:=2)
+    customMenu.Caption = "图与表"
+    
+    '添加按钮 章标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "表内容"
+    customButton.OnAction = "表内容"
+    '添加按钮 一级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "表题编号"
+    customButton.OnAction = "表题编号"
+    '添加按钮 二级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "图内容"
+    customButton.OnAction = "图内容"
+    '添加按钮 三级标题
+    Set customButton = customMenu.Controls.Add(Type:=msoControlButton)
+    customButton.Caption = "图题编号"
+    customButton.OnAction = "图题编号"
+    
+End Sub
+
+
